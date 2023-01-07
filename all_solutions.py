@@ -1,0 +1,15 @@
+# 278. First Bad Version
+# Day 7, 2
+
+class Solution:
+    def firstBadVersion(self, n: int) -> int:
+        low, high = 0, n
+        bad = 0
+        while low <= high:
+            mid = (low+high)//2
+            if isBadVersion(mid) == False:
+                low = mid+1
+            elif isBadVersion(mid) == True:
+                high = mid-1
+                bad = mid
+        return bad
