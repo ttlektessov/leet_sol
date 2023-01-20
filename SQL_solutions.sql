@@ -45,3 +45,32 @@ order by sell_date;
 -- 1527. Patients With a Condition
 -- Write your MySQL query statement below
 select patient_id, patient_name, conditions from Patients where conditions like '% DIAB1%' or conditions like 'DIAB1%';
+
+-- 1965. Employees With Missing Information
+-- # Write your MySQL query statement below
+select employee_id from Employees where employee_id not in (select employee_id from Salaries)
+union 
+select employee_id from Salaries where employee_id not in (select employee_id from Employees)
+order by 1 asc;
+
+-- 1795. Rearrange Products Table
+-- # Write your MySQL query statement below
+select product_id, 'store1' as store, store1 as price from Products where store1 is not null
+union
+select product_id, 'store2' as store, store2 as price from Products where store2 is not null
+union
+select product_id, 'store3' as store, store3 as price from Products where store3 is not null;
+
+-- 608. Tree Node
+-- # Write your MySQL query statement below
+select id,
+    case when p_id is null then 'Root'
+         when id in (select p_id from Tree) then 'Inner'
+         else 'Leaf'
+    end as Type
+from tree
+order by id;
+
+-- 176. Second Highest Salary
+-- # Write your MySQL query statement below
+select max(salary) as SecondHighestSalary from Employee where salary not in (select max(salary) from Employee);
