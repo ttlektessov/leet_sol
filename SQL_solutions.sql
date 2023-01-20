@@ -74,3 +74,22 @@ order by id;
 -- 176. Second Highest Salary
 -- # Write your MySQL query statement below
 select max(salary) as SecondHighestSalary from Employee where salary not in (select max(salary) from Employee);
+
+-- 175. Combine Two Tables
+-- # Write your MySQL query statement below
+select FirstName, LastName, City, State
+from Person 
+left join Address on Person.PersonId = Address.PersonId;
+
+-- 1581. Customer Who Visited but Did Not Make Any Transactions
+-- # Write your MySQL query statement below
+select customer_id, count(Visits.visit_id) as count_no_trans 
+from Visits
+left join Transactions on Visits.visit_id = Transactions.visit_id
+where Transactions.visit_id is null
+group by customer_id;
+where Transactions.visit_id is null;
+
+-- 1581. Customer Who Visited but Did Not Make Any Transactions
+-- # Write your MySQL query statement below
+select distinct author_id as id from Views where author_id = viewer_id order by 1 asc;
