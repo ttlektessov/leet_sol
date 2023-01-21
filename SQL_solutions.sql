@@ -93,3 +93,17 @@ where Transactions.visit_id is null;
 -- 1581. Customer Who Visited but Did Not Make Any Transactions
 -- # Write your MySQL query statement below
 select distinct author_id as id from Views where author_id = viewer_id order by 1 asc;
+
+-- 197. Rising Temperature
+-- # Write your MySQL query statement below
+select w1.id from Weather w1, Weather w2
+where w1.temperature > w2.temperature and datediff(w1.recordDate, w2.recordDate) = 1;
+
+-- 607. Sales Person
+-- # Write your MySQL query statement below
+select s.name from SalesPerson s
+where sales_id not in
+(  
+    select sales_id from orders where com_id in
+    (select com_id from company where name = 'RED')
+);
