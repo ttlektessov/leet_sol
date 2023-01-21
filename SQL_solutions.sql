@@ -107,3 +107,10 @@ where sales_id not in
     select sales_id from orders where com_id in
     (select com_id from company where name = 'RED')
 );
+
+-- 1141. User Activity for the Past 30 Days I
+-- # Write your MySQL query statement below
+select activity_date as day, count(distinct user_id) as active_users
+from Activity 
+where (activity_date > '2019-06-27' AND activity_date <= '2019-07-27')
+group by activity_date;
