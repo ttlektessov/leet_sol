@@ -1,3 +1,17 @@
+-- 1729. Find Followers Count
+--# Write your MySQL query statement below
+select DISTINCT(user_id), COUNT(follower_id) AS followers_count
+FROM Followers
+GROUP BY user_id
+ORDER BY 1, 2;
+
+-- 1693. Daily Leads and Partners
+-- # Write your MySQL query statement below
+SELECT date_id, make_name, COUNT(DISTINCT lead_id) AS unique_leads, COUNT(DISTINCT partner_id) as unique_partners
+FROM DailySales
+GROUP BY 1, 2;
+
+
 -- 595. Big Countries
 -- Write your MySQL query statement below
 select name, population, area from World where area >= 3000000 or population >= 25000000;
