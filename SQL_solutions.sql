@@ -1,3 +1,30 @@
+-- 1741. Find Total Time Spent by Each Employee
+-- # Write your MySQL query statement below
+SELECT event_day AS day, emp_id, SUM(out_time) - SUM(in_time) AS total_time
+FROM Employees
+GROUP BY event_day, emp_id;
+
+-- 1890. The Latest Login in 2020
+-- # Write your MySQL query statement below
+SELECT user_id, MAX(time_stamp) AS last_stamp
+FROM Logins
+WHERE YEAR(time_stamp) = 2020
+GROUP BY user_id;
+
+-- 511. Game Play Analysis I
+-- # Write your MySQL query statement below
+SELECT DISTINCT player_id, MIN(event_date) AS first_login
+FROM Activity
+GROUP BY player_id;
+
+-- 586. Customer Placing the Largest Number of Orders
+-- # Write your MySQL query statement below
+SELECT customer_number
+FROM orders
+GROUP BY customer_number
+ORDER BY COUNT(*) DESC
+LIMIT 1;
+
 -- 1729. Find Followers Count
 --# Write your MySQL query statement below
 select DISTINCT(user_id), COUNT(follower_id) AS followers_count
