@@ -1,3 +1,12 @@
+-- 1407. Top Travellers
+-- # Write your MySQL query statement below
+SELECT Users.name, IFNULL(SUM(Rides.distance), 0) AS travelled_distance
+FROM Users
+LEFT JOIN Rides
+ON Users.id = Rides.user_id
+GROUP BY Rides.user_id
+ORDER BY travelled_distance DESC, Users.name ASC;
+
 -- 1741. Find Total Time Spent by Each Employee
 -- # Write your MySQL query statement below
 SELECT event_day AS day, emp_id, SUM(out_time) - SUM(in_time) AS total_time
