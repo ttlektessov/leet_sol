@@ -1,3 +1,22 @@
+-- 1393. Capital Gain/Loss
+-- # Write your MySQL query statement below
+SELECT stock_name, SUM(
+    CASE
+        WHEN operation = 'Buy' THEN -price
+        ELSE price
+    END
+) AS capital_gain_loss
+FROM Stocks
+GROUP BY stock_name;
+
+-- 1158. Market Analysis I
+-- # Write your MySQL query statement below
+SELECT u.user_id as buyer_id, u.join_date, COUNT(o.order_id) as 'orders_in_2019'
+FROM Users u
+LEFT JOIN Orders o
+ON o.buyer_id=u.user_id AND YEAR(order_date)='2019'
+GROUP BY u.user_id;
+
 -- 1084. Sales Analysis III
 -- # Write your MySQL query statement below
 SELECT s.product_id, product_name
