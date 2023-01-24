@@ -1,3 +1,36 @@
+-- 1084. Sales Analysis III
+-- # Write your MySQL query statement below
+SELECT s.product_id, product_name
+FROM Sales s
+LEFT JOIN Product p
+ON s.product_id = p.product_id
+GROUP BY s.product_id
+HAVING MIN(sale_date) >= CAST('2019-01-01' AS DATE) AND
+       MAX(sale_date) <= CAST('2019-03-31' AS DATE)
+
+-- 1587. Bank Account Summary II
+-- # Write your MySQL query statement below
+SELECT a.name, SUM(b.amount) AS balance
+FROM Users a
+JOIN Transactions b
+ON a.account = b.account
+GROUP BY a.account
+HAVING balance > 10000;
+
+-- 1050. Actors and Directors Who Cooperated At Least Three Times
+-- # Write your MySQL query statement below
+SELECT actor_id, director_id
+FROM ActorDirector
+GROUP BY actor_id, director_id
+HAVING COUNT(timestamp) >= 3;
+
+-- 182. Duplicate Emails
+-- # Write your MySQL query statement below
+SELECT email
+FROM Person
+GROUP BY email
+HAVING COUNT(email) > 1;
+
 -- 1407. Top Travellers
 -- # Write your MySQL query statement below
 SELECT Users.name, IFNULL(SUM(Rides.distance), 0) AS travelled_distance
